@@ -11,10 +11,10 @@ import model.Aluno;
 
 public class ProgramaC_Alunos {
 
-	private static final String name = "teste";
-	private static final String email = "teste";
-	private static final int idade = 21;
-	private static final String cidade = "teste";
+	private static final String name = "drake";
+	private static final String email = "";
+	private static final int idade = 0;
+	private static final String cidade = "";
 	
 	public static void main(String[] args) {
 		FileReader arquivo = null;
@@ -29,6 +29,7 @@ public class ProgramaC_Alunos {
 		System.out.println(lista.search(busca, new SearchByName()));
 		System.out.println(lista.search(busca, new SearchByEmail()));
 		System.out.println(lista.search(busca, new SearchByAgeAndCity()));
+		lista.mostra();
 	}
 
 }

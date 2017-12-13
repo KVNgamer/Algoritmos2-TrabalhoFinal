@@ -1,38 +1,36 @@
 package datastructures;
 
+import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.Comparator;
 import java.util.Scanner;
+
+import comparators.SearchByName;
 import model.Aluno;
 
 public class ListaEncadeada<T> {
 	
-	public static void main(String[] args) {
-		ListaEncadeada<String> lista = new ListaEncadeada<>();
-		
-		lista.append("Cerveja");
-		lista.append("Amendoim");
-		lista.append("Pão de Queijo");
-		lista.append("Mais Cerveja");
-		lista.append("Coca-Cola");
-		lista.addFirst("Pão");
-		lista.addFirst("Queijo");
-		lista.append("Presunto");
-		
-		lista.printObjects();
-	}
-	
-	//====================================================================
 	private no<T> head=null; 
 	private no<T> tail=null; 
-	private int tamanho = 0;
+	private static int tamanho = 0;
 	
 	
+	public static int getTamanho() {
+		return tamanho;
+	}
+	public void setTamanho(int tamanho) {
+		this.tamanho = tamanho;
+	}
+
+
 	private static class no<T> {
 		private T dado;
 		private no<T> anterior;
 		private no<T> proximo;
+		
+		
 		public no<T> getAnterior() {
 			return anterior;
 		}
@@ -57,8 +55,6 @@ public class ListaEncadeada<T> {
 			this.anterior = null;
 		}
 	}
-	
-	
 	
 	public void append(T dado) {
 		no<T> novo = new no<>(dado);
@@ -86,14 +82,6 @@ public class ListaEncadeada<T> {
 		}
 		tamanho++;
 	}
-	
-	
-	
-	public T search(T key, Comparator<T> cmp){
-		return null;
-	}
-	
-	
 	public void printObjects(){
 		no<T> i = head;
 		while (i != null) {
@@ -102,38 +90,78 @@ public class ListaEncadeada<T> {
 		}
 	}
 	
-	public static ListaEncadeada<model.Aluno> loadFromFile(FileReader arquivo){
-        try{
-        	Aluno aluno =new Aluno();
-        	//cria um scanner para ler o arquivo
-			Scanner ler = new Scanner(arquivo);
-            //variavel que armazenara as linhas do arquivo
-            String linhasDoArquivo = new String();
-            //percorre todo o arquivo
-            int contador=0;
-            while(ler.hasNext()){
-            	//recebe cada linha do arquivo
-                linhasDoArquivo = ler.nextLine();
-                //separa os campos entre as virgulas de cada linha
-                String[] valoresEntreVirgulas = linhasDoArquivo.split(",");
-                
-                aluno.setMatricula(valoresEntreVirgulas[0]);
-                aluno.setNome(valoresEntreVirgulas[1]);
-                aluno.setEmail(valoresEntreVirgulas[2]);
-                setIdade(valoresEntreVirgulas[3]);
-                setSexo(valoresEntreVirgulas[4]);
-                setCidade(valoresEntreVirgulas[5]);
-                setEmpresa(valoresEntreVirgulas[6]);
-            	}
-        
-        	}catch(FileNotFoundException e){
-            
-        	}
+	
+	public boolean search(Aluno key, Comparator<T> cmp){
+			
+			no<T> i = head;
+			while (i != null) {
+			cmp.compare2(key ,i);
+				
+				
+				
+				i = i.proximo;
+			}
+	
+		return true;
+		
 	}
 	
-	//===========================================
-	public boolean vazio() {
-		return head == null;
-	}
+
+
 	
+	
+	
+	
+	  public static ListaEncadeada<model.Aluno> loadFromFile(FileReader arquivo){
+		 
+	  BufferedReader ler = new BufferedReader(arquivo);
+		
+		ListaEncadeada<Aluno> infoAluno = new ListaEncadeada<Aluno>();
+		
+		try {
+			
+			String linha = ler.readLine();
+			
+			while(linha != null) {
+				//separa os campos entre as virgulas de cada linha
+				String[] atributos = linha.split(",");
+				
+				Aluno Aluno = new Aluno();
+				Aluno.setMatricula(atributos[0]);
+				Aluno.setNome(atributos[1]);
+				Aluno.setEmail(atributos[2]);				
+				//coloca a String em int.
+				Aluno.setIdade(Integer.valueOf(atributos[3]));
+				Aluno.setSexo(atributos[4]);
+				Aluno.setEmpresa(atributos[5]);
+				Aluno.setCidade(atributos[6]);
+				
+				infoAluno.append((Aluno) Aluno);
+				
+				
+				System.out.println(getTamanho()+"  "+Aluno.getNome());
+				
+				linha = ler.readLine();
+			}
+			
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return infoAluno;
+	}
+	  
+	  
+	  public boolean vazio() {
+			return head == null;
+		}
+	  public void mostra(){
+			no<T> i = head;
+			while (i != null) {
+				System.out.println(((Aluno) i.dado).getNome());
+				i = i.proximo;
+			}
+		}
+		  
 }

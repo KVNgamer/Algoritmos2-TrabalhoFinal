@@ -1,14 +1,30 @@
 package model;
 
 public class Aluno {
-	int matricula,idade;
-	String nome=null,email=null,empresa=null,cidade=null,sexo=null;
 	
-	public int getMatricula() {
+	private int idade=0;
+	
+	private String nome=null,email=null,empresa=null,cidade=null,sexo=null,matricula=null;
+	
+	public Aluno(String matricula, String nome, int idade, String sexo) {
+		this.matricula = matricula;
+		this.nome = nome;
+		this.idade = idade;
+		this.sexo = sexo;
+	}
+	
+	
+	
+	public Aluno() {
+	}
+
+
+
+	public String getMatricula() {
 		return matricula;
 	}
-	public void setMatricula(int matricula) {
-		this.matricula = matricula;
+	public void setMatricula(String valoresEntreVirgulas) {
+		this.matricula = valoresEntreVirgulas;
 	}
 	public int getIdade() {
 		return idade;
@@ -28,6 +44,7 @@ public class Aluno {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
 	public String getEmpresa() {
 		return empresa;
 	}
@@ -46,4 +63,15 @@ public class Aluno {
 	public void setSexo(String sexo) {
 		this.sexo = sexo;
 	}	
+	
+	@Override
+	public String toString() {
+		return "Aluno [idade=" + idade + ", nome=" + nome + ", email=" + email + ", empresa=" + empresa + ", cidade="
+				+ cidade + ", sexo=" + sexo + ", matricula=" + matricula + "]";
+	}
+
+	
+	
+	
+	
 }
