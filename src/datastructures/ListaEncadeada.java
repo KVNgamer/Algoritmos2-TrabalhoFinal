@@ -9,6 +9,7 @@ import java.util.Scanner;
 
 import comparators.SearchByName;
 import model.Aluno;
+import predicates.NamePredicate;
 
 public class ListaEncadeada<T> {
 	
@@ -169,6 +170,10 @@ public class ListaEncadeada<T> {
 				System.out.println(((Aluno) x.dado).getCidade()+"  "+((Aluno) x.dado).getIdade());
 				x = x.proximo;
 			}
+		}
+		public void removeIf(NamePredicate namePredicate) {
+			// TODO Auto-generated method stub
+			
 		}
 		  
 }
