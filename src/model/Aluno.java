@@ -6,11 +6,11 @@ public class Aluno {
 	
 	private String nome=null,email=null,empresa=null,cidade=null,sexo=null,matricula=null;
 	
-	public Aluno(String matricula, String nome, int idade, String sexo) {
-		this.matricula = matricula;
+	public Aluno(String nome, String email, int idade, String cidade) {
 		this.nome = nome;
+		this.email = email;
 		this.idade = idade;
-		this.sexo = sexo;
+		this.cidade = cidade;
 	}
 	
 	
@@ -66,8 +66,8 @@ public class Aluno {
 	
 	@Override
 	public String toString() {
-		return "Aluno [idade=" + idade + ", nome=" + nome + ", email=" + email + ", empresa=" + empresa + ", cidade="
-				+ cidade + ", sexo=" + sexo + ", matricula=" + matricula + "]";
+		return "-> Aluno(a) " + nome + " Idade=" + idade + ", Email=" + email + ", Empresa=" + empresa + ", Cidade="
+				+ cidade + ", Sexo=" + sexo + ", Matricula=" + matricula ;
 	}
 
 	

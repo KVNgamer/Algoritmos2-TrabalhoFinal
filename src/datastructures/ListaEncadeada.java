@@ -91,27 +91,34 @@ public class ListaEncadeada<T> {
 	}
 	
 	
-	public boolean search(Aluno key, Comparator<T> cmp){
-			
+		public T search(T key, Comparator<T> cmp){
 			no<T> i = head;
-			while (i != null) {
-			cmp.compare2(key ,i);
+				while (i != null) {
 				
+				if (cmp.compare(key,i.getDado()) == 0){
+					return i.getDado();
+				}
 				
-				
-				i = i.proximo;
+				i = i.getProximo();
 			}
-	
-		return true;
-		
+		return null;
 	}
 	
 
-
 	
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//==========================================================================
 	  public static ListaEncadeada<model.Aluno> loadFromFile(FileReader arquivo){
 		 
 	  BufferedReader ler = new BufferedReader(arquivo);
@@ -139,7 +146,7 @@ public class ListaEncadeada<T> {
 				infoAluno.append((Aluno) Aluno);
 				
 				
-				System.out.println(getTamanho()+"  "+Aluno.getNome());
+				//System.out.println(getTamanho()+"  "+Aluno.getNome());
 				
 				linha = ler.readLine();
 			}
@@ -157,10 +164,10 @@ public class ListaEncadeada<T> {
 			return head == null;
 		}
 	  public void mostra(){
-			no<T> i = head;
-			while (i != null) {
-				System.out.println(((Aluno) i.dado).getNome());
-				i = i.proximo;
+		  	no<T> x = head;
+			while (x != null) {
+				System.out.println(((Aluno) x.dado).getCidade()+"  "+((Aluno) x.dado).getIdade());
+				x = x.proximo;
 			}
 		}
 		  

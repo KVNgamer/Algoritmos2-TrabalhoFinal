@@ -11,10 +11,10 @@ import model.Aluno;
 
 public class ProgramaC_Alunos {
 
-	private static final String name = "drake";
-	private static final String email = "";
-	private static final int idade = 0;
-	private static final String cidade = "";
+	private static final String nome = "Ruthie Hartman";
+	private static final String email = "sherrierojas@menbrain.com";
+	private static final int idade =25;
+	private static final String cidade = "Dragoon";
 	
 	public static void main(String[] args) {
 		FileReader arquivo = null;
@@ -25,11 +25,13 @@ public class ProgramaC_Alunos {
 			System.exit(1);
 		}
 		ListaEncadeada<Aluno> lista = ListaEncadeada.loadFromFile(arquivo);
-		Aluno busca = new Aluno(name, email, idade, cidade);
+		Aluno busca = new Aluno(nome, email, idade, cidade);
+		//System.out.println(busca.toString());
+		
 		System.out.println(lista.search(busca, new SearchByName()));
 		System.out.println(lista.search(busca, new SearchByEmail()));
 		System.out.println(lista.search(busca, new SearchByAgeAndCity()));
-		lista.mostra();
+		//lista.mostra();
 	}
 
 }
